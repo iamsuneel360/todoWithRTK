@@ -1,6 +1,6 @@
 import React from "react";
 
-const AddTodoForm = () => {
+const UpdateTodoForm = () => {
   return (
     <>
       <form className="flex space-x-3">
@@ -13,13 +13,13 @@ const AddTodoForm = () => {
         />
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline"
+          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
         >
-          Add
+          Update
         </button>
       </form>
     </>
   );
 };
 
-export default AddTodoForm;
+export default UpdateTodoForm;
