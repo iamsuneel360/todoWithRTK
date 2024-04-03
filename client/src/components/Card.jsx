@@ -6,8 +6,8 @@ import SingleTodoCard from "./SingleTodoCard";
 import { useSelector } from "react-redux";
 
 const Card = () => {
-  const myTodos = useSelector((state) => state.todos);
-  console.log(myTodos);
+  const myTodos = useSelector((state) => state.todos.todos);
+  // console.log(myTodos);
   return (
     <div className=" w-1/2 h-3/4 min-h-max bg-amber-100 shadow-2xl p-2 rounded-lg items-center flex flex-col justify-between space-y-10">
       <div className=" flex flex-col space-y-10 w-full h-3/4 min-h-max items-center">
@@ -16,10 +16,16 @@ const Card = () => {
         </h1>
         <div className=" w-3/4">
           <AddTodoForm />
-          <UpdateTodoForm />
+          {/* <UpdateTodoForm /> */}
         </div>
         <div className="w-3/4">
-          <SingleTodoCard />
+          <ul className=" w-full max-h-72 overflow-y-scroll">
+            {myTodos.map((todo) => (
+              <li className=" mb-3" key={todo.id}>
+                <SingleTodoCard name={todo.name} />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
       <div>

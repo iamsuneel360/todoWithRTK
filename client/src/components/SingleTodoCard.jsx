@@ -6,7 +6,7 @@ const SingleTodoCard = (props) => {
   return (
     <div className="flex justify-between bg-red-100 py-2 rounded shadow">
       <div className="px-4">
-        <h1>Wakeup</h1>
+        <h1>{props.name}</h1>
       </div>
       <div className="px-4 flex space-x-4">
         <BsCheckSquare className="cursor-pointer text-green-700" size={20} />
