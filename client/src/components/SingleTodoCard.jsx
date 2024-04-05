@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { BsTrashFill, BsCheckSquare } from "react-icons/bs";
+import { todoDeleted } from "@/Redux/reducerSlice/todoSlice";
+import { useDispatch } from "react-redux";
 import { FaEdit } from "react-icons/fa";
 
 const SingleTodoCard = (props) => {
   const [done, setDone] = useState(false);
+  const dispatch = useDispatch();
   return (
     <div className="flex justify-between bg-red-100 py-2 rounded shadow">
       <div className="px-4">
@@ -18,7 +21,11 @@ const SingleTodoCard = (props) => {
           size={20}
         />
         <FaEdit className="cursor-pointer text-yellow-700" size={20} />
-        <BsTrashFill className="cursor-pointer text-red-700" size={20} />
+        <BsTrashFill
+          onClick={() => dispatch(todoDeleted(props.id))}
+          className="cursor-pointer text-red-700"
+          size={20}
+        />
       </div>
     </div>
   );

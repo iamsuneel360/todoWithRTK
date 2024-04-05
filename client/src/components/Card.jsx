@@ -23,7 +23,7 @@ const Card = () => {
           <ul className=" w-full max-h-72 overflow-y-scroll">
             {myTodos.map((todo) => (
               <li className=" mb-3" key={todo.id}>
-                <SingleTodoCard name={todo.name} />
+                <SingleTodoCard id={todo.id} name={todo.name} />
               </li>
             ))}
           </ul>
