@@ -6,7 +6,7 @@ const initialState = {
     { id: nanoid(), name: "Ram" },
     { id: nanoid(), name: "Hari" },
   ],
-  toogleForm: true,
+  toggleForm: true,
   todoUpdate: {},
 };
 
@@ -23,8 +23,25 @@ export const todoSlice = createSlice({
     todoDeleted: (state, action) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
+    toggleInputForm: (state, action) => {
+      state.toggleForm = !state.toggleForm;
+      state.todoUpdate = { ...state.todoUpdate, ...action.payload };
+    },
+    todoUpdated: (state, action) => {
+      const todoToUpdate = state.todos.find(
+        (todo) => todo.id === action.payload.id
+      );
+      todoToUpdate.name = action.payload.name;
+      state.toggleForm = !state.toggleForm;
+    },
   },
 });
 
-export const { todoAdded, todoCleared, todoDeleted } = todoSlice.actions;
+export const {
+  todoAdded,
+  todoCleared,
+  todoDeleted,
+  toggleInputForm,
+  todoUpdated,
+} = todoSlice.actions;
 export default todoSlice.reducer;

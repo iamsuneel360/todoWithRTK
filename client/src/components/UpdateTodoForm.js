@@ -1,15 +1,37 @@
-import React from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { todoUpdated } from "@/Redux/reducerSlice/todoSlice";
 
 const UpdateTodoForm = () => {
+  const todoToUpdate = useSelector((state) => state.todos.todoUpdate);
+  const dispatch = useDispatch();
+  const [update, setUpdate] = useState(todoToUpdate.name);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (/^\s*$/.test(update)) {
+      alert("Enter todos");
+      setUpdate("");
+      return;
+    } else {
+      dispatch(
+        todoUpdated({
+          id: todoToUpdate.id,
+          name: update,
+        })
+      );
+    }
+  };
+
   return (
     <>
-      <form className="flex space-x-3">
+      <form onSubmit={handleSubmit} className="flex space-x-3">
         <input
           type="text"
-          //   value={input}
-          //   onChange={(e) => setInput(e.target.value)}
+          value={update}
+          onChange={(e) => setUpdate(e.target.value)}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-zinc-200"
-          placeholder="Add todo"
+          placeholder="Update todo"
         />
         <button
           type="submit"

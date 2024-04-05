@@ -8,6 +8,7 @@ import { todoCleared } from "@/Redux/reducerSlice/todoSlice";
 
 const Card = () => {
   const myTodos = useSelector((state) => state.todos.todos);
+  const toggleForm = useSelector((state) => state.todos.toggleForm);
   const dispatch = useDispatch();
   return (
     <div className=" w-1/2 h-3/4 min-h-max bg-amber-100 shadow-2xl p-2 rounded-lg items-center flex flex-col justify-between space-y-10">
@@ -16,8 +17,7 @@ const Card = () => {
           My todo list
         </h1>
         <div className=" w-3/4">
-          <AddTodoForm />
-          {/* <UpdateTodoForm /> */}
+          {toggleForm ? <AddTodoForm /> : <UpdateTodoForm />}
         </div>
         <div className="w-3/4">
           <ul className=" w-full max-h-72 overflow-y-scroll">
